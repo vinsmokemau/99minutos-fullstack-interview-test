@@ -7,7 +7,7 @@ branches = repo.heads
 for branch in branches:
     print(f'Branch: {branch.name}\n')
 
-commits = repo.iter_commits(branch.name)
+commits = repo.iter_commits('develop')
 previous_commit = ''
 for commit in commits:
     print(f'Id: {commit}')
