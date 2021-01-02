@@ -32,18 +32,37 @@ class BranchDetail(APIView):
         data = []
         commits = repo.iter_commits(branch_name)
         for commit in commits:
-            files = repo.git.show('--name-only', '--pretty=', f'{commit}')
-            no_files = len(files.split('\n'))
             
             data.append(
                 {
-                    'Id': str(commit),
-                    'Files': no_files,
-                    'Author': commit.author.name,
-                    'Mail': commit.author.email,
-                    'Message': commit.message,
-                    'Timestamp': commit.authored_date,
+                    'id': str(commit),
+                    'author': commit.author.name,
+                    'message': commit.message,
+                    'timestamp': commit.authored_date,
                 }
             )
+
+        return Response(data)
+
+
+class CommitDetail(APIView):
+
+    def get(self, request, commit_id):
+        """Return the data of a commit."""
+        data = []
+        commit = repo.commit(commit_id)
+        files = repo.git.show('--name-only', '--pretty=', f'{commit}')
+        no_files = len(files.split('\n'))
+        
+        data.append(
+            {
+                'id': str(commit),
+                'files': no_files,
+                'author': commit.author.name,
+                'mail': commit.author.email,
+                'message': commit.message,
+                'timestamp': commit.authored_date,
+            }
+        )
 
         return Response(data)

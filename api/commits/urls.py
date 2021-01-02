@@ -7,6 +7,7 @@ from django.urls import path
 from .views import (
     ListBranches,
     BranchDetail,
+    CommitDetail,
 )
 
 urlpatterns = [
@@ -20,7 +21,13 @@ urlpatterns = [
     path(
         'branches/<str:branch_name>/',
         BranchDetail.as_view(),
-        name='branches',
+        name='branch',
+    ),
+
+    path(
+        'commits/<str:commit_id>/',
+        CommitDetail.as_view(),
+        name='commit',
     ),
 
 ]
