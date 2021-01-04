@@ -19,7 +19,7 @@ class ListBranches(APIView):
         branches = repo.heads
         for branch in branches:
             data.append(
-                {'Name': branch.name}
+                {'name': branch.name}
             )
         
         return Response(data)
@@ -49,20 +49,17 @@ class CommitDetail(APIView):
 
     def get(self, request, commit_id):
         """Return the data of a commit."""
-        data = []
         commit = repo.commit(commit_id)
         files = repo.git.show('--name-only', '--pretty=', f'{commit}')
         no_files = len(files.split('\n'))
         
-        data.append(
-            {
-                'id': str(commit),
-                'files': no_files,
-                'author': commit.author.name,
-                'mail': commit.author.email,
-                'message': commit.message,
-                'timestamp': commit.authored_date,
-            }
-        )
+        data = {
+            'id': str(commit),
+            'files': no_files,
+            'author': commit.author.name,
+            'mail': commit.author.email,
+            'message': commit.message,
+            'timestamp': commit.authored_date,
+        }
 
         return Response(data)
