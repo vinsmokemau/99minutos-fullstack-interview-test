@@ -19,3 +19,9 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Endpoints
+
+localhost:8080/branches/
+localhost:8080/branches/<str:branch_name>/
+localhost:8080/commits/<str:commit_id>/
