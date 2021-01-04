@@ -1,0 +1,9 @@
+appdirs==1.4.4
+distlib==0.3.1
+filelock==3.0.12
+importlib-metadata==3.1.0
+numpy==1.19.3
+six==1.15.0
+virtualenv==20.2.1
+virtualenvwrapper-win==1.2.6
+zipp==3.4.0
